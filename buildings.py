@@ -144,9 +144,13 @@ class Army():
         self.troops = []
         self.armycamp = ArmyCamp()
         self.total_army_damage = 0
+        self.total_army_space = 0
 
     def update_army_damage(self):
         self.total_army_damage = sum(troop.damage for troop in self.troops)
+    
+    def update_army_space(self):
+        self.total_army_space = sum(troop.weight for troop in self.troops)
         
 
 
@@ -202,7 +206,7 @@ class Village():
         self.army.update_army_damage()
     
     def recruit_troop(self, troop):
-        if sum(troop.weight for troop in self.army.troops) + troop.weight > self.army.armycamp.space:
+        if self.army.total_army_space + troop.weight > self.army.armycamp.space:
             print("Nicht genug Platz. Die Truppe wird nicht hinzugefügt!")
             return
         if self.treasury.total_gold < troop.recruiting_cost:
@@ -211,8 +215,16 @@ class Village():
         
         self.army.troops.append(troop)
         self.army.update_army_damage()
+        self.army.update_army_space()
         self.treasury.total_gold -= troop.recruiting_cost
-
+    
+    def deposit_gold_investment(self, amount):
+        if self.treasury.total_gold >= amount:
+            self.bank.deposit(amount)
+            self.treasury.total_gold -= amount
+        else:
+            print("Du hast nicht genug Gold")
+        
 
 class Game():
     def __init__(self):
