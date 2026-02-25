@@ -45,3 +45,34 @@ def show_army(game):
     print(army_dict)
     print(f"Power: {game.village.army.total_army_damage}")
     print(f"Größe: {game.village.army.total_army_space}")
+
+def upgrades(game):
+    upgrade_choices_dict = {
+        1: "Goldmine",
+        2: "Farm",
+        3: "Armeelager",
+        4: "Rathaus"
+    }
+
+    print("Welches Gebäude willst du upgraden?")
+    for key, value in upgrade_choices_dict.items():
+        print(key, value)
+    upgrade_choice = int(input("> "))
+    if upgrade_choice == 1:
+        game.village.goldmine.upgrade_goldmine()
+        print(f"Goldmine wurde auf Level: {game.village.goldmine.level} verbessert")
+    elif upgrade_choice == 2:
+        game.village.farm.upgrade_farm()
+        print(f"Farm wurde auf Level: {game.village.farm.level} verbessert")
+    elif upgrade_choice == 3:
+        game.village.army.armycamp.upgrade_armycamp()
+        print(f"Armeelager wurde auf Level: {game.village.army.armycamp.level} verbessert")
+    elif upgrade_choice == 4:
+        game.village.townhall.upgrade_townhall()
+        print(f"Rathaus wurde auf Level: {game.village.townhall.level} verbessert")
+    else:
+        print("Keine gültige Auswahl")
+
+
+
+    

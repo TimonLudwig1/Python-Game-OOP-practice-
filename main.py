@@ -11,7 +11,8 @@ while True:
     print("3. Geld anlegen")
     print("4. Truppen rekrutieren")
     print("5. Armee anschauen")
-    print("6. Raid starten")
+    print("6. Gebäude verbessern")
+    print("7. Raid starten")
 
     print(f"Deine Goldreserven betragen: {game.village.treasury.total_gold}")
     print(f"Deine Fleischreserven betragen: {game.village.barn.total_meat}")
@@ -29,6 +30,8 @@ while True:
     if choice == 5:
         show_army(game)
     if choice == 6:
+        upgrades(game)
+    if choice == 7:
         attack(game)
 
 

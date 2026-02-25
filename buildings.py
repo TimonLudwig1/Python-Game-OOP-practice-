@@ -1,4 +1,5 @@
 import time 
+import threading
 
 class Building:
     def __init__(self, upgrade_cost, name, level = 1):
@@ -153,12 +154,16 @@ class Army():
         self.total_army_space = sum(troop.weight for troop in self.troops)
         
 
-
 class ArmyCamp:
     def __init__(self):
         self.level = 1
         self.space = 100
         self.upgrade_cost = 3000
+    
+    def upgrade_armycamp(self):
+        self.level += 1
+        self.upgrade_cost += 1000
+        self.space += 200
 
 
 class Enemy:
@@ -229,9 +234,14 @@ class Village():
 class Game():
     def __init__(self):
         self.village = Village()
+        self.start_ticking()
     
     def tick(self):
         while True:
-            time.sleep(20)
+            time.sleep(10)
             self.village.farm.farming()
             self.village.goldmine.mining()
+    
+    def start_ticking(self):
+        thread = threading.Thread(target=self.tick, daemon=True)
+        thread.start()
