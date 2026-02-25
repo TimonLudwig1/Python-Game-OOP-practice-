@@ -4,19 +4,18 @@ from actions import *
 game = Game()
 
 while True: 
-    #game.tick()
-
+    
     print("\nWas möchtetst du tun?\n")
     print("1. Gold sammeln")
     print("2. Fleisch sammeln")
     print("3. Geld anlegen")
-    print("5. Truppen rekrutieren")
-    print("6. Armee anschauen")
-    print("7. Raid starten")
+    print("4. Truppen rekrutieren")
+    print("5. Armee anschauen")
+    print("6. Raid starten")
 
-    #print(f"Deine Goldreserven betragen: {game.village.treasury.total_gold}")
-    #print(f"Deine Fleischreserven betragen: {game.village.barn.total_meat}")
-    #print(f"Dein investment ist mitlerweile: {game.village.bank.amount * (1 + game.village.bank.interest_rate)**game.village.bank.investment_duration} wert")
+    print(f"Deine Goldreserven betragen: {game.village.treasury.total_gold}")
+    print(f"Deine Fleischreserven betragen: {game.village.barn.total_meat}")
+    print(f"Dein investment ist mitlerweile: {game.village.bank.amount * (1 + game.village.bank.interest_rate)**game.village.bank.investment_duration} wert")
 
     choice = int(input("> "))
     if choice == 1:
